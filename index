@@ -1,0 +1,22 @@
+def is_valid_card(card_number):
+    digits = [int(digit) for digit in card_number if digit.isdigit()]
+    digits.reverse()
+
+    for i in range(1, len(digits), 2):
+        digits[i] *= 2
+        if digits[i] > 9:
+            digits[i] -= 9
+
+    total = sum(digits)
+    return total % 10 == 0
+
+while True:
+    card_number = input("Введіть номер кредитної карти (або 'exit' для виходу): ")
+
+    if card_number.lower() == 'exit':
+        break
+
+    if is_valid_card(card_number):
+        print("Це дійсна карта.")
+    else:
+        print("Це не дійсна карта.")
